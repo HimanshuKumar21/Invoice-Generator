@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invoice Generator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    .navbar {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    }
+    .navbar .navbar-brand {
+      color: white !important;
+      font-weight: 600;
+    }
+    .navbar .logout-btn {
+      border: none;
+      color: white;
+      background-color: transparent;
+      font-weight: 500;
+    }
+    .navbar .logout-btn:hover {
+      color: #ffc107;
+    }
+  </style>
+  <script>
+    if (localStorage.getItem('isAdminLoggedIn') !== 'true') {
+      window.location.href = 'admin.html';
+    }
+    function logout() {
+      localStorage.removeItem('isAdminLoggedIn');
+      window.location.href = 'admin.html';
+    }
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg shadow-sm px-4 d-flex justify-content-between">
+    <a class="navbar-brand" href="index.html">📄 InvoicePro</a>
+    <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+  </nav>
+
+  <div class="container py-5">
+    <div class="card rounded-4 shadow-lg border-0 p-4">
+      <div id="invoiceBox">
+        <h2 class="text-center mb-4 text-primary-emphasis">🧾 Invoice Generator</h2>
+
+        <!-- Invoice number and date -->
+        <div class="row mb-3">
+          <div class="col-md-6 form-floating">
+            <input id="invoiceNumber" class="form-control" placeholder="Invoice No." readonly />
+            <label for="invoiceNumber">Invoice Number</label>
+          </div>
+          <div class="col-md-6 form-floating">
+            <input id="invoiceDate" class="form-control" placeholder="Date" readonly />
+            <label for="invoiceDate">Date</label>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-4 form-floating">
+            <input id="customerName" class="form-control" placeholder="Name" />
+            <label for="customerName">Customer Name</label>
+          </div>
+          <div class="col-md-4 form-floating">
+            <input id="customerAddress" class="form-control" placeholder="Address" />
+            <label for="customerAddress">Address</label>
+          </div>
+          <div class="col-md-4 form-floating">
+            <input id="customerPhone" class="form-control" placeholder="Phone" />
+            <label for="customerPhone">Phone</label>
+          </div>
+        </div>
+
+        <div class="row mb-3 align-items-end">
+          <div class="col-md-4 form-floating">
+            <input id="productName" class="form-control" placeholder="Product Name" />
+            <label for="productName">Product Name</label>
+          </div>
+          <div class="col-md-2 form-floating">
+            <input id="productQty" type="number" class="form-control" placeholder="Qty" />
+            <label for="productQty">Qty</label>
+          </div>
+          <div class="col-md-2 form-floating">
+            <input id="productPrice" type="number" class="form-control" placeholder="Price" />
+            <label for="productPrice">Price</label>
+          </div>
+          <div class="col-md-2 form-floating">
+            <input id="productGST" type="number" class="form-control" placeholder="GST %" />
+            <label for="productGST">GST %</label>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-gradient btn-success w-100" onclick="addItem()">➕ Add</button>
+          </div>
+        </div>
+
+        <table class="table table-bordered table-hover rounded shadow-sm overflow-hidden">
+          <thead class="table-dark">
+            <tr><th>#</th><th>Item</th><th>Qty</th><th>Price</th><th>GST%</th><th>Total</th><th>Action</th></tr>
+          </thead>
+          <tbody id="invoiceTable"></tbody>
+        </table>
+
+        <div class="text-end fw-bold fs-5 mt-3">Total: ₹<span id="invoiceTotal">0.00</span></div>
+
+        <div class="d-flex justify-content-end gap-2 mt-4">
+          <button class="btn btn-secondary" onclick="resetInvoice()">🔄 Reset</button>
+          <button class="btn btn-primary" onclick="generatePDF()">📄 PDF</button>
+          <button class="btn btn-success" onclick="generateInvoice()">🖨️ Print</button>
+        </div>
+      </div>
+
+      <div id="printArea" style="display: none">
+        <h2 class="text-center mb-4">🧾 Invoice</h2>
+        <div id="customerInfoPrint" class="mb-3"></div>
+        <table class="table table-bordered">
+          <thead class="table-dark">
+            <tr><th>#</th><th>Item</th><th>Qty</th><th>Price</th><th>GST%</th><th>Total</th></tr>
+          </thead>
+          <tbody id="invoiceTablePrint"></tbody>
+        </table>
+        <div class="text-end fw-bold fs-5">Total: ₹<span id="invoiceTotalPrint">0.00</span></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

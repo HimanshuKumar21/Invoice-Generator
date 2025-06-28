@@ -1,0 +1,124 @@
+/* GLOBAL */
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(to right, #f9f9f9, #f1f5f9);
+  color: #333;
+}
+
+h2 {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* NAVBAR */
+.navbar {
+  background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+  color: white;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* CARD / CONTAINERS */
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  border: none;
+}
+
+.container {
+  max-width: 1080px;
+}
+
+/* FORM */
+.form-floating > .form-control {
+  border-radius: 10px;
+  border: 1px solid #ced4da;
+  background-color: #f8f9fa;
+}
+
+.form-floating > label {
+  color: #6c757d;
+}
+
+input:focus {
+  border-color: #86b7fe !important;
+  box-shadow: 0 0 0 0.1rem rgba(13, 110, 253, 0.25) !important;
+}
+
+/* BUTTONS */
+.btn {
+  font-weight: 500;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn-gradient {
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  color: white;
+  border: none;
+}
+
+.btn-success {
+  background-color: #198754;
+  border: none;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border: none;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border: none;
+}
+
+/* TABLE */
+.table {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
+.table thead th {
+  background-color: #343a40;
+  color: #fff;
+}
+
+/* PRINT AREA */
+#printArea h2 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+#printArea table {
+  background-color: white;
+  border-collapse: collapse;
+}
+
+#printArea td, #printArea th {
+  border: 1px solid #dee2e6;
+  padding: 10px;
+}
+
+/* UTILITIES */
+.text-primary-emphasis {
+  color: #0d6efd !important;
+}
+
+.rounded-4 {
+  border-radius: 1rem;
+}
