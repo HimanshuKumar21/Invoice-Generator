@@ -24,7 +24,7 @@ InvoicePro is a modern, web-based invoice generator designed to help small busin
 ## 🗂 Project Structure
 
 ```
-📁 invoice-pro/
+📁 invoice-generator/
 ├── index.html          # Landing page
 ├── create.html         # Main invoice builder (admin-only)
 ├── admin.html          # Admin login form
